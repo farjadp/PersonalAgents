@@ -112,7 +112,9 @@ For each trend: what happened (with date and source URL), why it matters to our 
 
 ### 6. COMPETITORS (monthly)
 
-A competitor is **whoever ranks or is cited on our queries**. It is not a list we pick. The official sites in the profile are our sources, not competitors. Keep the **Competitors** database (ID in the profile) current.
+A competitor is **whoever ranks or is cited on our queries**. It is not a list we pick.
+
+If the `competitor-scout` agent is installed in this project (the `competitors` pack), hand it the discovery and judging of competitors, and use its reviewed register as the competitor set. Your part is then the search view below: who wins *our queries*, why, and the gap briefs. The official sites in the profile are our sources, not competitors. Keep the **Competitors** database (ID in the profile) current.
 
 1. **Find them from data.**
    - **The AI Visibility Tracker:** the last 4 weeks of cited domains, counted per domain.
