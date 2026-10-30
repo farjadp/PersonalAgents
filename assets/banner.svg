@@ -28,7 +28,7 @@
   <g font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="600">
     <rect x="383" y="242" width="214" height="44" rx="22" fill="#1E293B" stroke="#334155"/>
     <circle cx="407" cy="264" r="7" fill="#22C55E"/>
-    <text x="424" y="271" fill="#E2E8F0">SEO · AEO · GEO</text>
+    <text x="424" y="271" fill="#E2E8F0">SEO · Competitors</text>
     <rect x="611" y="242" width="226" height="44" rx="22" fill="#1E293B" stroke="#334155"/>
     <circle cx="635" cy="264" r="7" fill="#0EA5E9"/>
     <text x="652" y="271" fill="#E2E8F0">Private profiles</text>

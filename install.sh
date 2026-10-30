@@ -13,8 +13,8 @@
 # Copies agents/<pack>/*.md -> <project-dir>/.claude/agents/
 # Copies the profile        -> <project-dir>/.claude/profiles/<pack>.md
 # Existing files are never overwritten unless --force is given.
-# .claude/profiles/ is added to the project's local git exclude, so a
-# profile is not committed by accident (profiles hold private facts).
+# .claude/profiles/ and .claude/data/ are added to the project's local git
+# exclude, so profiles and agent research are not committed by accident.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -94,13 +94,16 @@ elif [[ ! -e "$dst" ]]; then
   echo "  -> fill every <…> in $dst before running the agents"
 fi
 
-# Keep profiles out of the project's commits (local only; changes no tracked file).
+# Keep profiles and agent data out of the project's commits
+# (local only; changes no tracked file).
 if git -C "$PROJECT" rev-parse --git-dir >/dev/null 2>&1; then
   exclude="$(git -C "$PROJECT" rev-parse --git-path info/exclude)"
   [[ "$exclude" = /* ]] || exclude="$PROJECT/$exclude"
   mkdir -p "$(dirname "$exclude")"
-  if ! grep -qxF '.claude/profiles/' "$exclude" 2>/dev/null; then
-    echo '.claude/profiles/' >> "$exclude"
-    echo "Git: .claude/profiles/ added to $exclude (not committed)"
-  fi
+  for path in .claude/profiles/ .claude/data/; do
+    if ! grep -qxF "$path" "$exclude" 2>/dev/null; then
+      echo "$path" >> "$exclude"
+      echo "Git: $path added to $exclude (not committed)"
+    fi
+  done
 fi

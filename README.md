@@ -6,12 +6,13 @@
   <img src="https://img.shields.io/badge/status-early-EAB308" alt="status: early">
   <img src="https://img.shields.io/badge/licence-MIT-22C55E" alt="MIT licence">
   <img src="https://img.shields.io/badge/for-Claude%20Code-6366F1" alt="for Claude Code">
-  <img src="https://img.shields.io/badge/packs-1%20(SEO)-0EA5E9" alt="1 pack: SEO">
+  <img src="https://img.shields.io/badge/packs-SEO%20%C2%B7%20Competitors-0EA5E9" alt="packs: SEO and Competitors">
 </p>
 
 <p align="center">
   <a href="#quick-start">Quick start</a> ·
   <a href="#the-seo-team">The SEO team</a> ·
+  <a href="#the-competitor-team">The competitor team</a> ·
   <a href="#safe-by-design">Safe by design</a> ·
   <a href="#add-your-own-agent">Add your own agent</a> ·
   <a href="#about-the-author">About the author</a>
@@ -61,6 +62,8 @@ mkdir -p profiles/myproject && cp profiles/_template/seo.md profiles/myproject/s
 ```bash
 ./install.sh seo ~/path/to/myproject myproject
 ```
+
+Packs today: `seo` and `competitors`. Each pack has its own profile template in `profiles/_template/`.
 
 Then, inside the project, ask Claude Code:
 
@@ -115,6 +118,36 @@ One team for all four ways people find you today: **SEO** (Google ranking), **AE
 
 </details>
 
+## The competitor team
+
+<p align="center">
+  <img src="assets/competitors-flow.svg" alt="competitor-scout: queries, search, clean, read site, judge, score; you review; then positioning-mapper and content-offer-gap" width="100%">
+</p>
+
+Who are your real competitors, where do you stand among them, and what can you own? Every answer comes with evidence you can click.
+
+| | Agent | Model | What it does |
+|:-:|---|---|---|
+| <img src="assets/icons/competitor-scout.svg" width="32" alt=""> | **`competitor-scout`** | opus | Finds competitors from live search results, reads their sites, judges each one (SEO and/or business · direct, indirect or aspirational), and gives you a review queue of up to 10. Learns from every rejection. |
+| <img src="assets/icons/positioning-mapper.svg" width="32" alt=""> | **`positioning-mapper`** | opus | Positioning maps: 2 fixed core charts + up to 3 market charts you choose. Finds the open space next to you, with fixed steps, and turns it into content angles. |
+| <img src="assets/icons/content-offer-gap.svg" width="32" alt=""> | **`content-offer-gap`** | sonnet | What competitors publish (keywords, topics, intent, funnel) and what they sell (products, services, packages) — and the gaps you can own. |
+
+<details>
+<summary><b>The rules that keep it honest</b></summary>
+
+- **Search results only.** A competitor can come only from a link that search actually returned — never from the model's memory.
+- **No site, no verdict.** A competitor whose website cannot be read is dropped, not guessed.
+- **Every reason quotes the evidence.** A reason that could be written without reading the site is invalid.
+- **Scale matters.** A company far bigger than you is *aspirational*, never a *direct* competitor.
+- **Certainty is a word, not a number.** The model says *certain*, *likely* or *unsure*; a fixed formula turns that into a score. Self-reported numbers carry no information.
+- **You decide.** Nothing is accepted for you. Reject with a reason (different market, too big, different product, not a company) and the next search steers away from it — and never shows that domain again.
+- **No invented gaps.** The open space on a map is computed in fixed steps, and only next to you. If there is none, the agent says so.
+- **An outage is not an empty market.** If every search fails, the run fails loudly.
+
+</details>
+
+The method comes from the competitor-intelligence engine of a production SaaS (Contivo), rebuilt as agents that need no app, no database and no API keys — only web search, a browser and your review. Results are saved to `.claude/data/competitors/`, which stays out of git.
+
 ## Safe by design
 
 <table>
@@ -135,7 +168,7 @@ One team for all four ways people find you today: **SEO** (Google ranking), **AE
 
 - 🔒 Real profiles are git-ignored. Only the empty template is public.
 - 🛡️ `install.sh` never overwrites a file without `--force`.
-- 🙈 It also tells the target project's git to ignore `.claude/profiles/`.
+- 🙈 It also tells the target project's git to ignore `.claude/profiles/` and `.claude/data/` (agent research).
 - 🔑 No key, password or token in any profile — only the variable name and where it lives.
 
 </td>
@@ -166,7 +199,7 @@ install.sh              copies a pack + a profile into a project
 
 ## Status and roadmap
 
-**Early.** The SEO pack comes from a team built for a live, two-language website in October 2026.
+**Early.** The SEO pack comes from a team built for a live, two-language website in October 2026. The competitor pack turns a tested app pipeline into agents; as agents, both packs are new.
 Its first experiments are still being measured, so there are no proven results yet. They will be published here
 when there are — failures included.
 
