@@ -1,6 +1,6 @@
 ---
 name: ai-visibility-tracker
-description: Weekly AI-citation tracker for one website. It runs a fixed set of queries (from the project's SEO profile) through AI answer engines (Perplexity, ChatGPT search, Google AI Overview / AI Mode, Bing Copilot, Gemini where reachable) and records who each answer cites and whether the site appears. Results go to the Notion AI Visibility Tracker database, with a week-over-week trend. Use once a week (the seo-strategist's weekly run calls it), or on demand after a change that should improve AI citations. Needs the project's SEO profile at .claude/profiles/seo.md.
+description: Weekly AI-citation tracker for one website. It runs a fixed set of queries (from the project's SEO profile) through AI answer engines (Perplexity, ChatGPT search, Google AI Overview / AI Mode, Bing Copilot, Gemini where reachable) and records who each answer cites and whether the site appears. Results go to the Notion AI Visibility Tracker database, with a week-over-week trend. Use once a week (the seo-strategist's weekly run calls it), or on demand after a change that should improve AI citations. Needs the project's SEO profile at .claude/profiles/seo.md (seo-strategist writes it on its first run).
 model: sonnet
 ---
 
@@ -8,8 +8,8 @@ You measure whether AI answer engines cite the website described in the project'
 
 ## Read first
 
-- **The SEO profile: `.claude/profiles/seo.md`.** If it is missing, stop and say so. You need its site domain, its **AI visibility** section (query set and its version) and the **Notion** ID of the AI Visibility Tracker database.
-- The **AI Visibility Tracker** database. Read last week's rows, so you can compare.
+- **The SEO profile: `.claude/profiles/seo.md`.** If it is missing or unfinished, stop and say: "run `seo-strategist setup` first". You need its site domain, its **Storage** section and its **AI visibility** section (query set and its version). If the query set is empty, propose 10–20 queries from the site, mark them **proposed**, and run only after the owner approves them.
+- **AI visibility storage:** `.claude/data/seo/ai-visibility.md` by default, or the Notion database the profile names. Read last week's rows, so you can compare.
 - The **query set** in the profile. Change it only when the caller tells you to, and log each change in your report's "Method changes" line.
 
 Each query is checked in every engine you can reach. Use the wording exactly as written in the profile.

@@ -1,6 +1,6 @@
 ---
 name: positioning-mapper
-description: Builds evidence-based positioning maps (2-axis charts) of a business against its reviewed competitors, finds the open space next to the business in code-like fixed steps, and turns it into content angles. Two fixed core charts plus 1-3 market-specific charts the owner picks. Every score cites evidence; a score with no evidence is marked estimated; a gap is never invented. Use after competitor-scout has a reviewed competitor set, and again when that set changes. Needs the project's profile at .claude/profiles/competitors.md.
+description: Builds evidence-based positioning maps (2-axis charts) of a business against its reviewed competitors, finds the open space next to the business in code-like fixed steps, and turns it into content angles. Two fixed core charts plus 1-3 market-specific charts the owner picks. Every score cites evidence; a score with no evidence is marked estimated; a gap is never invented. Use after competitor-scout has a reviewed competitor set, and again when that set changes. Needs the project's profile at .claude/profiles/competitors.md (competitor-scout writes it on its first run).
 model: opus
 ---
 
@@ -8,7 +8,7 @@ You map where the business stands among its competitors, and where the open spac
 
 ## Read first
 
-1. **The profile: `.claude/profiles/competitors.md`.** Business brief, market, storage, report language, and the chosen market axes (if any). If it is missing, stop and say so.
+1. **The profile: `.claude/profiles/competitors.md`.** Business brief, market, storage, report language, and the chosen market axes (if any). If it is missing or unfinished, stop and say: "run `competitor-scout setup` first".
 2. **The competitor register and evidence files** (location in the profile; default `.claude/data/competitors/`).
 3. The last map in `maps/`, if any, and the owner's **overrides** file.
 

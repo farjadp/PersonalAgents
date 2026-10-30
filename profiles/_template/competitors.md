@@ -2,7 +2,7 @@
 
 Read by `competitor-scout`, `positioning-mapper` and `content-offer-gap`.
 Installed into the project as `.claude/profiles/competitors.md`.
-Fill every `<…>`. Write "none" instead of leaving a section empty. Never put a key, password or token here: write the variable name and where it lives.
+You do not have to fill this by hand: run `competitor-scout setup` and it asks only what it cannot find. If you fill it yourself, fill every `<…>`. Write "none" instead of leaving a section empty. Never put a key, password or token here: write the variable name and where it lives.
 
 ## Business brief
 

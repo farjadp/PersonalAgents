@@ -41,7 +41,7 @@ Improve an agent once, and every project gets the improvement.
   <img src="assets/how-it-works.svg" alt="agents (public) + profile (private) go through install.sh into your project's .claude folder" width="100%">
 </p>
 
-Each agent reads `.claude/profiles/<pack>.md` first. **No profile, no work:** the agent stops and says so instead of guessing.
+Each agent reads `.claude/profiles/<pack>.md` first. **No profile, no guessing:** the lead agent asks you a few questions and writes it; the others wait until it exists.
 
 ## Quick start
 
@@ -51,23 +51,27 @@ Each agent reads `.claude/profiles/<pack>.md` first. **No profile, no work:** th
 git clone https://github.com/farjadp/PersonalAgents && cd PersonalAgents
 ```
 
-**2. Write a profile for your project** (start from the template, fill every `<…>`)
+**2. Install a pack into your project**
 
 ```bash
-mkdir -p profiles/myproject && cp profiles/_template/seo.md profiles/myproject/seo.md
+./install.sh seo ~/path/to/myproject
 ```
 
-**3. Install the pack into your project**
+Packs today: `seo` and `competitors`.
 
-```bash
-./install.sh seo ~/path/to/myproject myproject
-```
+**3. Let the lead agent set itself up.** Inside your project, ask Claude Code:
 
-Packs today: `seo` and `competitors`. Each pack has its own profile template in `profiles/_template/`.
+> run seo-strategist setup
 
-Then, inside the project, ask Claude Code:
+It reads your project, asks only what it cannot find (about 8 short questions), writes the profile, and shows it to you before doing any work. For the competitor pack: `run competitor-scout setup`.
+
+**4. Use it**
 
 > run seo-strategist: stats and audit
+
+> run competitor-scout: discover
+
+Want to see a finished profile first? Look at [`examples/`](examples/) — a complete, fictional business.
 
 Useful extras:
 
@@ -76,13 +80,12 @@ Useful extras:
 ```
 
 - `--force` overwrites files that differ. Without it, nothing is ever overwritten.
-- Keep profiles in a private folder instead: `export PERSONAL_AGENTS_PROFILES=~/private/profiles`.
-- Or pass a file path as the last argument instead of a name.
+- Reuse one profile across machines: keep it in `profiles/<name>/` (git-ignored) or in a private folder with `export PERSONAL_AGENTS_PROFILES=~/private/profiles`, then add the name as the last argument: `./install.sh seo ~/path/to/myproject myproject`.
 
 ## The SEO team
 
 <p align="center">
-  <img src="assets/seo-team.svg" alt="seo-strategist orchestrates fact-checker and ai-visibility-tracker; results go to Notion" width="100%">
+  <img src="assets/seo-team.svg" alt="seo-strategist orchestrates fact-checker and ai-visibility-tracker; results go to local files or Notion" width="100%">
 </p>
 
 One team for all four ways people find you today: **SEO** (Google ranking), **AEO** (being *the* answer),
@@ -111,8 +114,8 @@ One team for all four ways people find you today: **SEO** (Google ranking), **AE
 <details>
 <summary><b>What you need per project</b></summary>
 
-- A Notion setup: a main SEO page, Weekly Reports, a Playbook, and the Experiments, Fact Checks,
-  AI Visibility Tracker and Competitors databases. The profile holds their IDs.
+- Nothing extra to start. Reports, experiments, the playbook, fact checks and AI-visibility results are saved as files
+  in `.claude/data/seo/` (kept out of git). Notion works too, if you prefer it.
 - Search Console access (gcloud application-default credentials).
 - Optional: a PageSpeed Insights key, GA4, DataForSEO or Ahrefs.
 
@@ -146,7 +149,7 @@ Who are your real competitors, where do you stand among them, and what can you o
 
 </details>
 
-The method comes from the competitor-intelligence engine of a production SaaS (Contivo), rebuilt as agents that need no app, no database and no API keys — only web search, a browser and your review. Results are saved to `.claude/data/competitors/`, which stays out of git.
+The agents need no app, no database and no API keys — only web search, a browser and your review. Results are saved to `.claude/data/competitors/`, which stays out of git.
 
 ## Safe by design
 
@@ -166,7 +169,7 @@ The method comes from the competitor-intelligence engine of a production SaaS (C
 
 **The repo**
 
-- 🔒 Real profiles are git-ignored. Only the empty template is public.
+- 🔒 Real profiles are git-ignored. Only the empty templates and a fictional example are public.
 - 🛡️ `install.sh` never overwrites a file without `--force`.
 - 🙈 It also tells the target project's git to ignore `.claude/profiles/` and `.claude/data/` (agent research).
 - 🔑 No key, password or token in any profile — only the variable name and where it lives.
@@ -186,12 +189,13 @@ Read an agent before you run it. It is a short Markdown file, and it runs with y
 Before you commit, check:
 
 - [ ] No project names, Notion IDs, domains, local paths or secrets in `agents/`.
-- [ ] The agent says which profile sections it needs, and stops when the profile is missing.
+- [ ] The pack's lead agent has a `setup` job; the other agents say which profile sections they need and wait for it.
 - [ ] Safety rules (no push, no merge, no deploy, read-only outside) stay in the agent, not the profile.
 
 ```
 agents/<pack>/          generic agents — public
-profiles/_template/     empty profile — public
+profiles/_template/     empty profiles — public
+examples/               finished profiles for a fictional business — public
 profiles/<project>/     your real profiles — git-ignored
 assets/                 images for this README
 install.sh              copies a pack + a profile into a project
@@ -199,9 +203,7 @@ install.sh              copies a pack + a profile into a project
 
 ## Status and roadmap
 
-**Early.** The SEO pack comes from a team built for a live, two-language website in October 2026. The competitor pack turns a tested app pipeline into agents; as agents, both packs are new.
-Its first experiments are still being measured, so there are no proven results yet. They will be published here
-when there are — failures included.
+**Early.** Both packs are new as agents. Their methods come from real work, but they have not yet been run on many projects. Results will be published here when there are — failures included.
 
 Next packs: a mobile **UX auditor**, and the product team from
 [Divan](https://github.com/farjadp/Divan) (spec, architecture, build, independent review, security, release).

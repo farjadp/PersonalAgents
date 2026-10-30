@@ -2,7 +2,7 @@
 
 Read by `seo-strategist`, `fact-checker` and `ai-visibility-tracker`.
 Installed into the project as `.claude/profiles/seo.md`.
-Fill every `<…>`. Delete a section only if it truly does not apply, and write "none" instead of leaving it empty. Never put a key, password or token here: write the variable name and where it lives.
+You do not have to fill this by hand: run `seo-strategist setup` and it asks only what it cannot find. If you fill it yourself, fill every `<…>`. Delete a section only if it truly does not apply, and write "none" instead of leaving it empty. Never put a key, password or token here: write the variable name and where it lives.
 
 ## Site
 
@@ -21,21 +21,11 @@ Fill every `<…>`. Delete a section only if it truly does not apply, and write 
 - Files the strategist must read: <…>
 - Files the fact-checker must read: <…>
 
-## Notion
+## Storage
 
-Main SEO page: <id>
-
-| Name in the agents | Notion |
-|---|---|
-| Weekly Reports (page) | <id> |
-| Experiments (database) | <collection://…> |
-| Playbook (page) | <id> |
-| Fact Checks (database) | <collection://…> |
-| AI Visibility Tracker (database) | <collection://…> |
-| Competitors (database) | <collection://…> |
-
-- Fact Checks status for "needs a change": <Awaiting …>
-- Report fallback folder: <docs/seo-reports/>
+- **Where results live:** <files — `.claude/data/seo/` (default, git-ignored) | Notion>
+- If Notion — main SEO page: <id> · Reports page: <id> · Experiments: <collection://…> · Playbook page: <id> · Fact Checks: <collection://…> · AI Visibility: <collection://…> · Competitors: <collection://…>
+- Fact-check status for "needs a change": <Awaiting owner>
 
 ## Code map
 
