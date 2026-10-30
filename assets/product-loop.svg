@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-label="Feature loop: spec-writer, gate A, architect, gate B, builder, reviewer, security-checker, release-docs, gate C; the owner decides at every gate">
+  <title>Feature loop: spec-writer → gate A → architect → gate B → builder → reviewer → security-checker → release-docs → gate C</title>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#94A3B8"/></marker></defs>
+  <rect width="1280" height="440" rx="24" fill="#0F172A"/>
+  <g font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <text x="48" y="58" font-size="15" font-weight="700" fill="#A5B4FC" letter-spacing="2">FEATURE LOOP</text>
+    <g text-anchor="middle">
+      <rect x="48" y="80" width="200" height="92" rx="18" fill="#1E293B" stroke="#6366F1" stroke-width="2"/>
+      <text x="148" y="118" font-size="20" font-weight="800" fill="#FFFFFF">spec-writer</text>
+      <text x="148" y="146" font-size="14" fill="#CBD5E1">idea → feature card</text>
+      <rect x="300" y="96" width="96" height="60" rx="30" fill="#422006" stroke="#EAB308" stroke-width="2"/>
+      <text x="348" y="132" font-size="17" font-weight="800" fill="#FDE68A">Gate A</text>
+      <rect x="448" y="80" width="200" height="92" rx="18" fill="#1E293B" stroke="#0EA5E9" stroke-width="2"/>
+      <text x="548" y="118" font-size="20" font-weight="800" fill="#FFFFFF">architect</text>
+      <text x="548" y="146" font-size="14" fill="#CBD5E1">design · A/B/C · tasks</text>
+      <rect x="700" y="96" width="96" height="60" rx="30" fill="#422006" stroke="#EAB308" stroke-width="2"/>
+      <text x="748" y="132" font-size="17" font-weight="800" fill="#FDE68A">Gate B</text>
+      <rect x="848" y="80" width="200" height="92" rx="18" fill="#1E293B" stroke="#14B8A6" stroke-width="2"/>
+      <text x="948" y="118" font-size="20" font-weight="800" fill="#FFFFFF">builder</text>
+      <text x="948" y="146" font-size="14" fill="#CBD5E1">one task · tests first</text>
+    </g>
+    <g stroke="#94A3B8" stroke-width="3"><path d="M248 126H294" marker-end="url(#a)"/><path d="M396 126H442" marker-end="url(#a)"/><path d="M648 126H694" marker-end="url(#a)"/><path d="M796 126H842" marker-end="url(#a)"/></g>
+    <path d="M1048 126 H 1150 V 232" stroke="#94A3B8" stroke-width="3" fill="none" marker-end="url(#a)"/>
+    <g text-anchor="middle">
+      <rect x="1050" y="238" width="200" height="92" rx="18" fill="#1E293B" stroke="#F97316" stroke-width="2"/>
+      <text x="1150" y="276" font-size="20" font-weight="800" fill="#FFFFFF">reviewer</text>
+      <text x="1150" y="304" font-size="14" fill="#CBD5E1">independent · read-only</text>
+      <rect x="760" y="238" width="220" height="92" rx="18" fill="#1E293B" stroke="#EF4444" stroke-width="2"/>
+      <text x="870" y="276" font-size="20" font-weight="800" fill="#FFFFFF">security-checker</text>
+      <text x="870" y="304" font-size="14" fill="#CBD5E1">checks your promises</text>
+      <rect x="490" y="238" width="200" height="92" rx="18" fill="#1E293B" stroke="#22C55E" stroke-width="2"/>
+      <text x="590" y="276" font-size="20" font-weight="800" fill="#FFFFFF">release-docs</text>
+      <text x="590" y="304" font-size="14" fill="#CBD5E1">prepares · never deploys</text>
+      <rect x="290" y="252" width="140" height="64" rx="32" fill="#422006" stroke="#EAB308" stroke-width="2"/>
+      <text x="360" y="282" font-size="17" font-weight="800" fill="#FDE68A">Gate C</text>
+      <text x="360" y="302" font-size="12" fill="#FDE68A">you merge</text>
+    </g>
+    <g stroke="#94A3B8" stroke-width="3"><path d="M1050 284H986" marker-end="url(#a)"/><path d="M760 284H696" marker-end="url(#a)"/><path d="M490 284H436" marker-end="url(#a)"/></g>
+    <path d="M1120 238 C 1100 200, 1010 190, 990 176" stroke="#F97316" stroke-width="2.5" stroke-dasharray="6 5" fill="none" marker-end="url(#a)"/>
+    <text x="1090" y="226" font-size="13" fill="#FDBA74" text-anchor="end">changes → builder (max 3 rounds)</text>
+    <text x="48" y="392" font-size="17" fill="#CBD5E1">You decide at every gate. Agents never push, merge, tag or deploy. A quality gate blocks "done" while tests or type-check fail.</text>
+  </g>
+</svg>

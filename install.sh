@@ -25,7 +25,8 @@ PROFILE_DIRS+=("$ROOT/profiles")
 if [[ "${1:-}" == "--list" || $# -eq 0 ]]; then
   echo "Packs:"
   for d in "$ROOT"/agents/*/; do
-    echo "  $(basename "$d"): $(cd "$d" && ls *.md | sed 's/\.md$//' | tr '\n' ' ')"
+    extra=""; [[ -d "$d/skills" ]] && extra=" + skills: $(ls "$d/skills" | tr '\n' ' ')"
+    echo "  $(basename "$d"): $(cd "$d" && ls *.md | sed 's/\.md$//' | tr '\n' ' ')$extra"
   done
   echo "Profiles on this machine:"
   found=0
@@ -77,10 +78,41 @@ find_profile() {
   done
 }
 
+PK="$ROOT/agents/$PACK"
 echo "Agents ($PACK):"
-for f in "$ROOT/agents/$PACK"/*.md; do
+for f in "$PK"/*.md; do
   copy "$f" "$PROJECT/.claude/agents/$(basename "$f")"
 done
+
+# Optional parts of a pack: skills/, hooks/, templates/, settings.json
+if [[ -d "$PK/skills" ]]; then
+  echo "Skills:"
+  while IFS= read -r f; do
+    copy "$f" "$PROJECT/.claude/skills/${f#"$PK/skills/"}"
+  done < <(find "$PK/skills" -type f | sort)
+fi
+if [[ -d "$PK/hooks" ]]; then
+  echo "Hooks:"
+  for f in "$PK/hooks"/*; do
+    copy "$f" "$PROJECT/.claude/hooks/$(basename "$f")"
+    chmod +x "$PROJECT/.claude/hooks/$(basename "$f")"
+  done
+fi
+if [[ -d "$PK/templates" ]]; then
+  echo "Templates:"
+  for f in "$PK/templates"/*; do
+    copy "$f" "$PROJECT/.claude/templates/$PACK/$(basename "$f")"
+  done
+fi
+if [[ -f "$PK/settings.json" ]]; then
+  echo "Settings:"
+  copy "$PK/settings.json" "$PROJECT/.claude/settings.$PACK.example.json"
+  if [[ ! -e "$PROJECT/.claude/settings.json" ]] || cmp -s "$PK/settings.json" "$PROJECT/.claude/settings.json"; then
+    copy "$PK/settings.json" "$PROJECT/.claude/settings.json"
+  else
+    echo "  KEPT     $PROJECT/.claude/settings.json (exists; merge rules from settings.$PACK.example.json yourself)"
+  fi
+fi
 
 dst="$PROJECT/.claude/profiles/$PACK.md"
 if [[ -n "$PROFILE" ]]; then
@@ -91,7 +123,7 @@ if [[ -n "$PROFILE" ]]; then
 elif [[ ! -e "$dst" ]]; then
   echo "No profile given. Start one from the template:"
   copy "$ROOT/profiles/_template/$PACK.md" "$dst"
-  echo "  -> in the project, run the pack's lead agent with \"setup\" (seo-strategist, competitor-scout),"
+  echo "  -> in the project, run the pack's setup (seo-strategist setup, competitor-scout setup, product-setup skill),"
   echo "     or fill every <…> in $dst by hand"
 fi
 

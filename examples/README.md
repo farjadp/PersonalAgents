@@ -4,7 +4,7 @@ Finished profiles for a **made-up business**, so you can see what a good profile
 
 | Example | What it is | Profiles |
 |---|---|---|
-| [`ledgerly/`](ledgerly/) | A bookkeeping app for freelancers in Canada, in English and French | [`seo.md`](ledgerly/seo.md) · [`competitors.md`](ledgerly/competitors.md) |
+| [`ledgerly/`](ledgerly/) | A bookkeeping app for freelancers in Canada, in English and French | [`product.md`](ledgerly/product.md) · [`seo.md`](ledgerly/seo.md) · [`competitors.md`](ledgerly/competitors.md) |
 
 Ledgerly is fictional. It uses the reserved `.example` domain, so nothing here points to a real company.
 
@@ -16,7 +16,7 @@ Ledgerly is fictional. It uses the reserved `.example` domain, so nothing here p
 ./install.sh seo ~/path/to/project
 ```
 
-Then, in the project: "run seo-strategist setup" (or "run competitor-scout setup").
+Then, in the project: "run seo-strategist setup" (or "run competitor-scout setup", or "run product-setup").
 
 **Start from an example.** Copy it into your git-ignored `profiles/` folder, change every line to your business, then install by name:
 

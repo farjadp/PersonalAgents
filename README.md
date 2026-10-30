@@ -6,11 +6,12 @@
   <img src="https://img.shields.io/badge/status-early-EAB308" alt="status: early">
   <img src="https://img.shields.io/badge/licence-MIT-22C55E" alt="MIT licence">
   <img src="https://img.shields.io/badge/for-Claude%20Code-6366F1" alt="for Claude Code">
-  <img src="https://img.shields.io/badge/packs-SEO%20%C2%B7%20Competitors-0EA5E9" alt="packs: SEO and Competitors">
+  <img src="https://img.shields.io/badge/packs-Product%20%C2%B7%20SEO%20%C2%B7%20Competitors-0EA5E9" alt="packs: Product, SEO and Competitors">
 </p>
 
 <p align="center">
   <a href="#quick-start">Quick start</a> ·
+  <a href="#the-product-team">The product team</a> ·
   <a href="#the-seo-team">The SEO team</a> ·
   <a href="#the-competitor-team">The competitor team</a> ·
   <a href="#safe-by-design">Safe by design</a> ·
@@ -57,19 +58,21 @@ git clone https://github.com/farjadp/PersonalAgents && cd PersonalAgents
 ./install.sh seo ~/path/to/myproject
 ```
 
-Packs today: `seo` and `competitors`.
+Packs today: `product`, `seo` and `competitors`.
 
 **3. Let the lead agent set itself up.** Inside your project, ask Claude Code:
 
 > run seo-strategist setup
 
-It reads your project, asks only what it cannot find (about 8 short questions), writes the profile, and shows it to you before doing any work. For the competitor pack: `run competitor-scout setup`.
+It reads your project, asks only what it cannot find (about 8 short questions), writes the profile, and shows it to you before doing any work. For the other packs: `run competitor-scout setup`, or for the product team `run product-setup`.
 
 **4. Use it**
 
 > run seo-strategist: stats and audit
 
 > run competitor-scout: discover
+
+> run the feature loop on: <your idea>
 
 Want to see a finished profile first? Look at [`examples/`](examples/) — a complete, fictional business.
 
@@ -81,6 +84,31 @@ Useful extras:
 
 - `--force` overwrites files that differ. Without it, nothing is ever overwritten.
 - Reuse one profile across machines: keep it in `profiles/<name>/` (git-ignored) or in a private folder with `export PERSONAL_AGENTS_PROFILES=~/private/profiles`, then add the name as the last argument: `./install.sh seo ~/path/to/myproject myproject`.
+
+## The product team
+
+<p align="center">
+  <img src="assets/product-loop.svg" alt="Feature loop: spec-writer, gate A, architect, gate B, builder, reviewer, security-checker, release-docs, gate C" width="100%">
+</p>
+
+A product team of agents around one human who decides. Separate roles, an independent reviewer, and three gates where you say yes or no. Based on the open-source [Divan](https://github.com/farjadp/Divan) method.
+
+| | Agent | Model | Job | Edits code? |
+|:-:|---|---|---|---|
+| <img src="assets/icons/product.svg" width="32" alt=""> | **`spec-writer`** | opus | Idea → small feature card: acceptance criteria, one success signal, what is cut | No |
+| | **`architect`** | opus | Design, three visual variants, a task list of ≤ 1-day tasks | No |
+| | **`builder`** | sonnet | One task at a time, tests first | Yes |
+| | **`reviewer`** | opus | Independent review; never sees the builder's report first | No |
+| | **`security-checker`** | opus | Auth, data, uploads, AI prompts — and your public promises, by name | No |
+| | **`feature-engineer`** | opus | Model input features — **only if the product has an ML model** | ML folder only |
+| | **`release-docs`** | sonnet | Changelog, release checklist, store notes — prepares, never deploys | Docs only |
+
+Plus three skills and a hook:
+- **`product-setup`** — reads your repo's own rules, commands, deploy trigger and promises; writes the profile; shows every conflict between the generic team and your repo. **Your repo always wins.**
+- **`feature-loop`** — runs the team on one feature, stopping at Gate A (spec), Gate B (design) and Gate C (merge).
+- **`feature-definition`** — business goal → user problem → requirement → feature → acceptance criteria → success signal.
+- **Quality gate** — a Stop hook that will not let an agent finish while lint, type-check or tests fail.
+- **Safety settings** — no push, tag or release; no reading `.env` or signing keys. Installed only if your project has no `.claude/settings.json`; otherwise you get an example file to merge.
 
 ## The SEO team
 
