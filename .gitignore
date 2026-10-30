@@ -1,0 +1,5 @@
+# Real project profiles hold private facts (Notion IDs, strategy, paths).
+# Keep them out of this public repo. Only the template is shared.
+profiles/*
+!profiles/_template/
+!profiles/README.md
