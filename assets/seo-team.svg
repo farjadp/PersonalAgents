@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="480" viewBox="0 0 1280 480" role="img" aria-label="The SEO team: seo-strategist orchestrates fact-checker and ai-visibility-tracker; results go to Notion and a weekly report">
+  <title>The SEO team: seo-strategist orchestrates fact-checker and ai-visibility-tracker</title>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#94A3B8"/></marker>
+  </defs>
+  <rect width="1280" height="480" rx="24" fill="#0F172A"/>
+  <g font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <!-- owner -->
+    <rect x="540" y="28" width="200" height="56" rx="28" fill="#422006" stroke="#EAB308" stroke-width="2"/>
+    <circle cx="572" cy="56" r="12" fill="#EAB308"/>
+    <text x="596" y="63" font-size="20" font-weight="700" fill="#FDE68A">You decide</text>
+    <path d="M640 84 V 118" stroke="#EAB308" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#a)"/>
+    <!-- strategist -->
+    <rect x="390" y="124" width="500" height="120" rx="20" fill="#1E293B" stroke="#6366F1" stroke-width="2"/>
+    <text x="640" y="164" font-size="26" font-weight="800" fill="#FFFFFF" text-anchor="middle">seo-strategist</text>
+    <text x="640" y="194" font-size="17" fill="#A5B4FC" text-anchor="middle">opus · orchestrator</text>
+    <g font-size="15" font-weight="600" text-anchor="middle">
+      <rect x="414" y="208" width="68" height="24" rx="12" fill="#312E81"/><text x="448" y="225" fill="#E0E7FF">audit</text>
+      <rect x="490" y="208" width="52" height="24" rx="12" fill="#312E81"/><text x="516" y="225" fill="#E0E7FF">fix</text>
+      <rect x="550" y="208" width="62" height="24" rx="12" fill="#312E81"/><text x="581" y="225" fill="#E0E7FF">stats</text>
+      <rect x="620" y="208" width="80" height="24" rx="12" fill="#312E81"/><text x="660" y="225" fill="#E0E7FF">content</text>
+      <rect x="708" y="208" width="72" height="24" rx="12" fill="#312E81"/><text x="744" y="225" fill="#E0E7FF">trends</text>
+      <rect x="788" y="208" width="80" height="24" rx="12" fill="#312E81"/><text x="828" y="225" fill="#E0E7FF">rivals</text>
+    </g>
+    <!-- specialists -->
+    <path d="M520 244 L 330 300" stroke="#94A3B8" stroke-width="3" marker-end="url(#a)"/>
+    <path d="M760 244 L 950 300" stroke="#94A3B8" stroke-width="3" marker-end="url(#a)"/>
+    <rect x="80" y="304" width="440" height="100" rx="20" fill="#1E293B" stroke="#22C55E" stroke-width="2"/>
+    <text x="300" y="344" font-size="24" font-weight="800" fill="#FFFFFF" text-anchor="middle">fact-checker</text>
+    <text x="300" y="376" font-size="17" fill="#86EFAC" text-anchor="middle">opus · official sources only</text>
+    <rect x="760" y="304" width="440" height="100" rx="20" fill="#1E293B" stroke="#0EA5E9" stroke-width="2"/>
+    <text x="980" y="344" font-size="24" font-weight="800" fill="#FFFFFF" text-anchor="middle">ai-visibility-tracker</text>
+    <text x="980" y="376" font-size="17" fill="#7DD3FC" text-anchor="middle">sonnet · who do AI engines cite?</text>
+    <!-- outputs -->
+    <text x="640" y="448" font-size="17" fill="#94A3B8" text-anchor="middle">→ Notion: Weekly Reports · Experiments · Playbook · Fact Checks · AI Visibility · Competitors</text>
+  </g>
+</svg>
