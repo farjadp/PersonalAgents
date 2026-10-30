@@ -91,7 +91,8 @@ if [[ -n "$PROFILE" ]]; then
 elif [[ ! -e "$dst" ]]; then
   echo "No profile given. Start one from the template:"
   copy "$ROOT/profiles/_template/$PACK.md" "$dst"
-  echo "  -> fill every <…> in $dst before running the agents"
+  echo "  -> in the project, run the pack's lead agent with \"setup\" (seo-strategist, competitor-scout),"
+  echo "     or fill every <…> in $dst by hand"
 fi
 
 # Keep profiles and agent data out of the project's commits
